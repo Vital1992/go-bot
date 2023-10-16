@@ -25,7 +25,7 @@ func main() {
 
 	for update := range updates {
 		if update.Message != nil { // If we got a message
-			// log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
 			// log.Printf("[%s] %s", update.Message.From.UserName, update.Message.From.ID)
 			// userId := update.Message.From.ID
 			// userMsg := update.Message.Text
