@@ -15,7 +15,7 @@ func main() {
 
 	http.Handle("/api", router)
 
-	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), router))
 
 	bot, err := chatbot.NewBotAPI(os.Getenv("API_KEY"))
 	if err != nil {
