@@ -4,11 +4,19 @@ import (
 	"log"
 	chatbot "main/bot"
 	"main/openai"
+	"main/routes"
+	"net/http"
 	"os"
 	// tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 func main() {
+	router := routes.MovieRoutes()
+
+	http.Handle("/api", router)
+
+	log.Fatal(http.ListenAndServe(":8081", router))
+
 	bot, err := chatbot.NewBotAPI(os.Getenv("API_KEY"))
 	if err != nil {
 		log.Panic(err)
