@@ -7,7 +7,7 @@ import (
 	"github.com/sashabaranov/go-openai"
 )
 
-func NewOpenAISummarizer(apiKey, prompt string) string {
+func SendToGPT(apiKey, prompt string) string {
 	client := openai.NewClient(apiKey)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
