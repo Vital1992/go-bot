@@ -4,13 +4,13 @@ import (
 	"log"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
 	TestToken               = "6620296838:AAFGeDHI31nXwpxW0tObD0HwlUO9c1NyBro"
 	ChatID                  = 667349672
-	Channel                 = "@tgbotapitest"
-	ReplyToMessageID        = 1
 )
 
 func getBot(t *testing.T) (*BotAPI, error) {
@@ -25,11 +25,13 @@ func getBot(t *testing.T) (*BotAPI, error) {
 }
 
 func TestNewBotAPI_notoken(t *testing.T) {
-	_, err := NewBotAPI("")
+	res, err := NewBotAPI("")
 
 	if err == nil {
 		t.Error(err)
 	}
+	var nilBot = (*BotAPI)(nil)
+	assert.Equal(t, nilBot, res)
 }
 
 func TestGetUpdates(t *testing.T) {
@@ -55,27 +57,11 @@ func TestSendWithMessage(t *testing.T) {
 	}
 }
 
-func TestSendWithMessageReply(t *testing.T) {
-	bot, _ := getBot(t)
-
-	msg := NewMessage(ChatID, "A test message from the test library in telegram-bot-api")
-	msg.ReplyToMessageID = ReplyToMessageID
-	_, err := bot.Send(msg)
-
-	if err != nil {
-		t.Error(err)
-	}
-}
-
 func ExampleNewBotAPI() {
 	bot, err := NewBotAPI("MyAwesomeBotToken")
 	if err != nil {
 		panic(err)
 	}
-
-	bot.Debug = true
-
-	log.Printf("Authorized on account %s", bot.Self.UserName)
 
 	u := NewUpdate(0)
 	u.Timeout = 60
@@ -95,7 +81,6 @@ func ExampleNewBotAPI() {
 		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
 
 		msg := NewMessage(update.Message.Chat.ID, update.Message.Text)
-		msg.ReplyToMessageID = update.Message.MessageID
 
 		bot.Send(msg)
 	}

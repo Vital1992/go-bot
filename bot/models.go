@@ -7,6 +7,7 @@ import (
 
 // User represents a Telegram user or bot.
 type User struct {
+	ID int64 `json:"id"`
 	UserName string `json:"username,omitempty"`
 }
 

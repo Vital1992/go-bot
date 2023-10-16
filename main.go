@@ -3,12 +3,13 @@ package main
 import (
 	"log"
 	chatbot "main/bot"
+	"os"
 	// tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 func main() {
 	//TODO: store key
-	bot, err := chatbot.NewBotAPI("6620296838:AAFGeDHI31nXwpxW0tObD0HwlUO9c1NyBro")
+	bot, err := chatbot.NewBotAPI(os.Getenv("API_KEY"))
 	if err != nil {
 		log.Panic(err)
 	}
@@ -24,14 +25,12 @@ func main() {
 
 	for update := range updates {
 		if update.Message != nil { // If we got a message
-			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+			// log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+			// log.Printf("[%s] %s", update.Message.From.UserName, update.Message.From.ID)
+			// userId := update.Message.From.ID
+			// userMsg := update.Message.Text
 
-			// msg := chatbot.NewMessage(update.Message.Chat.ID, update.Message.Text)
-			// msg.ReplyToMessageID = update.Message.MessageID
 
-			//TODO: remove ReplyToMessageID everywhere
-
-			// bot.Send(msg)
 			bot.Send(chatbot.NewMessage(update.Message.Chat.ID, update.Message.Text))
 		}
 	}
