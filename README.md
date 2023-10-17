@@ -8,6 +8,6 @@ The Telegram bot serves as a platform where users can leave reviews. It operates
 
 To start locally run this command:
 
-USE_GPT=<select true or false> API_KEY=<enter your telegram API key> GPT_KEY=<enter Chat GPT API key> PORT=8081 ./main
+USE_GPT={select true or false} API_KEY={enter your telegram API key} GPT_KEY={enter Chat GPT API key} PORT=8081 ./main
 
 Application also deployed to the https://railway.app/ where above env vars set up in railway
