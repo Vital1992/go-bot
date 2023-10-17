@@ -6,6 +6,8 @@ type Product struct {
 	Description  string `json:"description"`
 	Brand      	 string `json:"brand"`
 	Category 	 string `json:"category"`
+	Price 	 	 float64 `json:"price"`
+	Picture 	 string `json:"picture"`
 }
 
 type Message struct {
