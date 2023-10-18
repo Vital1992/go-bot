@@ -30,6 +30,7 @@ func RunBotServer() {
 		log.Panic(err)
 	}
 
+	// Update config
 	u := chatbot.NewUpdate(0)
 	u.Timeout = 60
 

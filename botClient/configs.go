@@ -5,40 +5,12 @@ const (
 	// APIEndpoint is the endpoint for all API methods,
 	// with formatting for Sprintf.
 	APIEndpoint = "https://api.telegram.org/bot%s/%s"
-	// FileEndpoint is the endpoint for downloading a file from Telegram.
-	FileEndpoint = "https://api.telegram.org/file/bot%s/%s"
 )
 
 // Chattable is any config type that can be sent.
 type Chattable interface {
 	params() (Params, error)
 	method() string
-}
-
-// Fileable is any config type that can be sent that includes a file.
-type Fileable interface {
-	Chattable
-	files() []RequestFile
-}
-
-// MediaGroupConfig allows you to send a group of media.
-//
-// Media consist of InputMedia items (InputMediaPhoto, InputMediaVideo).
-type MediaGroupConfig struct {
-	ChatID          int64
-	ChannelUsername string
-
-	Media               []interface{}
-	DisableNotification bool
-	ReplyToMessageID    int
-}
-
-// UserProfilePhotosConfig contains information about a
-// GetUserProfilePhotos request.
-type UserProfilePhotosConfig struct {
-	UserID int64
-	Offset int
-	Limit  int
 }
 
 // UpdateConfig contains information about a GetUpdates request.
