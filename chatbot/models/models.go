@@ -1,13 +1,13 @@
 package models
 
 type Product struct {
-	Id        	 int 	`json:"id"`
-	Name      	 string `json:"name"`
-	Description  string `json:"description"`
-	Brand      	 string `json:"brand"`
-	Category 	 string `json:"category"`
-	Price 	 	 float64 `json:"price"`
-	Picture 	 string `json:"picture"`
+	Id          int     `json:"id"`
+	Name        string  `json:"name"`
+	Description string  `json:"description"`
+	Brand       string  `json:"brand"`
+	Category    string  `json:"category"`
+	Price       float64 `json:"price"`
+	Picture     string  `json:"picture"`
 }
 
 type Message struct {
@@ -15,35 +15,39 @@ type Message struct {
 }
 
 type AddProductRequest struct {
-    Product Product `json:"product"`
+	Product Product `json:"product"`
 }
 
 type AddProductResponse struct {
-    AddedProduct Product `json:"addedProduct"`
+	AddedProduct Product `json:"addedProduct"`
 }
 
 type GetAllProductsResponse struct {
-    AllProducts []Product `json:"allProducts"`
+	AllProducts []Product `json:"allProducts"`
 }
 
 type GetProductResponse struct {
-    Product Product `json:"product"`
+	Product Product `json:"product"`
 }
 
 type DeleteProductResponse struct {
-    DeletedProduct Product `json:"deletedProduct"`
-	Message string `json:"message"`
+	DeletedProduct Product `json:"deletedProduct"`
+	Message        string  `json:"message"`
 }
 
 type UpdateProductRequest struct {
-    Product Product `json:"product"`
+	Product Product `json:"product"`
 }
 
 type UpdateProductResponse struct {
-    UpdatedProduct Product `json:"updatedProduct"`
+	UpdatedProduct Product `json:"updatedProduct"`
 }
 
 type ErrorResponse struct {
-    Error   string `json:"error"`
+	Error string `json:"error"`
 }
 
+type ChatCompletionMessage struct {
+	Role    string `json:"role"`
+	Content string `json:"content"`
+}

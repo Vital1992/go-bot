@@ -7,8 +7,9 @@ import (
 
 // User represents a Telegram user or bot.
 type User struct {
-	ID int64 `json:"id"`
+	ID       int64  `json:"id"`
 	UserName string `json:"username,omitempty"`
+	Language string `json:"language_code"`
 }
 
 // APIResponse is a response from the Telegram API with the result
@@ -74,10 +75,10 @@ type FileConfig struct {
 
 // Message represents a message.
 type Message struct {
-	MessageID int `json:"message_id"`
-	Text string `json:"text,omitempty"`
-	From *User `json:"from,omitempty"`
-	Chat *Chat `json:"chat"`
+	MessageID int    `json:"message_id"`
+	Text      string `json:"text,omitempty"`
+	From      *User  `json:"from,omitempty"`
+	Chat      *Chat  `json:"chat"`
 }
 
 // UpdatesChannel is the channel for getting updates.
@@ -100,8 +101,8 @@ type Update struct {
 	// the correct update sequence, should they get out of order.
 	// If there are no new updates for at least a week, then identifier
 	// of the next update will be chosen randomly instead of sequentially.
-	UpdateID int `json:"update_id"`
-	Message *Message `json:"message,omitempty"`
+	UpdateID int      `json:"update_id"`
+	Message  *Message `json:"message,omitempty"`
 }
 
 // Chat represents a chat.
