@@ -23,7 +23,7 @@ var (
 
 func RunBotServer() {
 	go func() {
-		router := routes.MovieRoutes()
+		router := routes.ProducRoutes()
 		http.Handle("/api", router)
 		log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 	}()

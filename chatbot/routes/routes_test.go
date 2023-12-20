@@ -8,12 +8,12 @@ import (
 	"testing"
 )
 
-func TestMovieRoutes(t *testing.T) {
+func TestProducRoutes(t *testing.T) {
 	// Create a request to the "/api/" route
 	req := httptest.NewRequest("GET", "/api/", nil)
 	rr := httptest.NewRecorder()
 
-	router := MovieRoutes()
+	router := ProducRoutes()
 	router.ServeHTTP(rr, req)
 
 	// Check the status code
