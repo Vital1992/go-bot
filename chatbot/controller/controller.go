@@ -18,6 +18,20 @@ import (
 
 var useChatGPT = os.Getenv("USE_GPT")
 
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+}
+
+func GetHome(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	message := models.Message{
+		Message: "Store API",
+	}
+	json.NewEncoder(w).Encode(message)
+}
+
 func AddProduct(w http.ResponseWriter, r *http.Request) {
 	var req models.AddProductRequest
 
@@ -50,6 +64,7 @@ func AddProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllProducts(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 	allProducts := db.ProductList
